@@ -9,7 +9,8 @@
              d:DataContext="{d:DesignInstance Type=viewmodels:ContactListViewModel}"
              
              mc:Ignorable="d" 
-             Background="White"
+             Background="Transparent"
+             
              d:DesignHeight="760" d:DesignWidth="400">
 
     <Border Background="#F5F5F5" CornerRadius="0">
@@ -29,31 +30,60 @@
                 <Button Grid.Column="1" Command="{Binding GoToAddViewCommand}" Style="{StaticResource AddButton}" />
             </Grid>
 
-            <ListView Grid.Row="1" ItemsSource="{Binding Contacts}" Margin="0 20 0 0" HorizontalContentAlignment="Stretch">
+
+            <ListView Grid.Row="1" ItemsSource="{Binding Contacts}" Margin="0 20 0 0" HorizontalContentAlignment="Stretch" Background="Transparent" BorderThickness="0">
+               
+               <!-- Detta stycke är generarat av ChatGTP 4o för att få bort hover-effekten på kontakt-kortet. Försökte läggas in i separat fil men fick det ej att fungera. -->
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <!-- Standard egenskaper -->
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Margin" Value="0"/>
+                        <Setter Property="Padding" Value="0"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+
+                        <!-- Ta bort hover-effekten -->
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListViewItem">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <!-- Slut genererad kod -->
+
                 <ListView.ItemTemplate>
                     <DataTemplate DataType="models:ContactModel">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="auto" />
-                            </Grid.ColumnDefinitions>
+                        <Border Background="White" CornerRadius="8" Margin="0 5" Padding="10">
+                            <!--Genererat av ChatGTP 4o för att få skugga bakom kontaktkortet -->
+                            <Border.Effect>
+                                <DropShadowEffect Color="Black" Opacity="0.1" BlurRadius="10" ShadowDepth="2"/>
+                            </Border.Effect>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
 
-                            <StackPanel Grid.Column="0">
-                                <TextBlock Text="{Binding FirstName}" Style="{StaticResource SecondaryHeading}"/>
-                                <TextBlock Text="{Binding LastName}" Style="{StaticResource SecondaryHeading}"/>
-                                <TextBlock Text="{Binding Email}" Style="{StaticResource SecondaryText}"/>
-                            </StackPanel>
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="{Binding DisplayName}" Style="{StaticResource SecondaryHeading}" Padding="2"/>
+                                    <TextBlock Text="{Binding Email}" Style="{StaticResource SecondaryText}" Padding="2"/>
+                                </StackPanel>
 
-                            <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                <Button CommandParameter="{Binding .}" Command="{Binding DataContext.GoToDetailsViewCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" Style="{StaticResource DetailsButton}" Margin="0 0 2 0"/>
-                                <Button CommandParameter="{Binding .}" Command="{Binding DataContext.DeleteContactCommand, RelativeSource={RelativeSource AncestorType=ListView}}" Style="{StaticResource DeleteButton}" />
-                            </StackPanel>
-
-                        </Grid>
+                                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                    <Button CommandParameter="{Binding .}" Command="{Binding DataContext.GoToDetailsViewCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" Style="{StaticResource DetailsButton}" Margin="0 0 5 0"/>
+                                    <Button CommandParameter="{Binding .}" Command="{Binding DataContext.DeleteContactCommand, RelativeSource={RelativeSource AncestorType=ListView}}" Style="{StaticResource DeleteButton}" />
+                                </StackPanel>
+                            </Grid>
+                        </Border>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
         </Grid>
     </Border>
 </UserControl>

@@ -10,46 +10,49 @@
              
              mc:Ignorable="d" 
              
-             Background="White"
-             d:DesignHeight="450" d:DesignWidth="300">
-    
-    <Grid Margin="15">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+             Background="#F5F5F5"
+             
+             d:DesignHeight="760" d:DesignWidth="400">
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="New Contact" FontSize="20" FontWeight="SemiBold"/>
+    <Border Background="#F5F5F5" CornerRadius="0">
+        <Grid Margin="15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="1" Margin="0 20 0 0">
-            <TextBlock Text="First Name"/>
-            <TextBox Text="{Binding Contact.FirstName}" Margin="0,0,0,10" Padding="4" />
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="New Contact" Style="{StaticResource Heading}"/>
 
-            <TextBlock Text="Last Name"/>
-            <TextBox Text="{Binding Contact.LastName}" Margin="0,0,0,10" Padding="4" />
-            
-            <TextBlock Text="Email"/>
-            <TextBox Text="{Binding Contact.Email}" Margin="0,0,0,10" Padding="4" />
+            <StackPanel Grid.Row="1" Margin="0 20 0 0">
+                <TextBlock Text="First Name" Style="{StaticResource Text}"/>
+                <TextBox Text="{Binding Contact.FirstName}" Style="{StaticResource Form}" Margin="0,0,0,10" Padding="4" />
 
-            <TextBlock Text="Phone number"/>
-            <TextBox Text="{Binding Contact.PhoneNumber}" Margin="0,0,0,10" Padding="4" />
+                <TextBlock Text="Last Name" Style="{StaticResource Text}"/>
+                <TextBox Text="{Binding Contact.LastName}" Style="{StaticResource Form}" Margin="0,0,0,10" Padding="4" />
 
-            <TextBlock Text="Address"/>
-            <TextBox Text="{Binding Contact.Address}" Margin="0,0,0,10" Padding="4" />
-            
-            <TextBlock Text="Zip code"/>
-            <TextBox Text="{Binding Contact.ZipCode}" Margin="0,0,0,10" Padding="4" />
+                <TextBlock Text="Email" Style="{StaticResource Text}"/>
+                    <TextBox Text="{Binding Contact.Email}" Style="{StaticResource Form}" Margin="0,0,0,10" Padding="4" />
 
-            <TextBlock Text="City"/>
-            <TextBox Text="{Binding Contact.City}" Margin="0,0,0,10" Padding="4" />
+                <TextBlock Text="Phone number" Style="{StaticResource Text}"/>
+                <TextBox Text="{Binding Contact.PhoneNumber}" Style="{StaticResource Form}"  Margin="0,0,0,10" Padding="4" />
 
-        </StackPanel>
+                <TextBlock Text="Address" Style="{StaticResource Text}"/>
+                <TextBox Text="{Binding Contact.Address}" Style="{StaticResource Form}"  Margin="0,0,0,10" Padding="4" />
 
-        <StackPanel Grid.Row="2">
-            <Button Content="Save" Padding="5" Margin="0 10 0 5" Command="{Binding SaveCommand }"/>
-            <Button Content="Cancel" Padding="5" Margin="0 10 0 5" Command="{Binding CancelCommand}"/>
-        </StackPanel>
+                <TextBlock Text="Zip code" Style="{StaticResource Text}"/>
+                <TextBox Text="{Binding Contact.ZipCode}" Style="{StaticResource Form}"  Margin="0,0,0,10" Padding="4" />
 
-    </Grid>
+                <TextBlock Text="City" Style="{StaticResource Text}"/>
+                <TextBox Text="{Binding Contact.City}" Style="{StaticResource Form}"  Margin="0,0,0,10" Padding="4" />
+
+            </StackPanel>
+
+            <StackPanel Grid.Row="2">
+                <Button Content="Save" Padding="5" Margin="0 10 0 5" HorizontalAlignment="Stretch" Command="{Binding SaveCommand }" Style="{StaticResource PrimaryButton}"/>
+                <Button Content="Cancel" Padding="5" Margin="0 10 0 5" HorizontalAlignment="Stretch" Command="{Binding CancelCommand}" Style="{StaticResource PrimaryButton}"/>
+            </StackPanel>
+
+        </Grid>
+    </Border>
 </UserControl>

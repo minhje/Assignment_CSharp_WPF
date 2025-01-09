@@ -8,7 +8,7 @@
              xmlns:models="clr-namespace:Business.Models;assembly=Business"
              d:DataContext="{d:DesignInstance Type=viewmodels:ContactEditViewModel}"
              mc:Ignorable="d" 
-             Background="White"
+             Background="Transparent"
              d:DesignHeight="550" d:DesignWidth="300">
     <Grid Margin="15">
         <Grid.RowDefinitions>
@@ -20,32 +20,32 @@
         <TextBlock Grid.Row="0" Grid.Column="0" Text="Edit Contact" FontSize="20" FontWeight="SemiBold"/>
 
         <StackPanel Grid.Row="1" Margin="0 20 0 0">
-            <TextBlock Text="First Name"/>
-            <TextBox Text="{Binding ContactModel.FirstName}" Margin="0,0,0,10" Padding="4" />
+            <TextBlock Text="First Name" Style="{StaticResource Text}" />
+            <TextBox Text="{Binding ContactModel.FirstName}" Style="{StaticResource Form}" Margin="0,0,0,10" Padding="4" />
 
-            <TextBlock Text="Last Name"/>
-            <TextBox Text="{Binding ContactModel.LastName}" Margin="0,0,0,10" Padding="4" />
+            <TextBlock Text="Last Name" Style="{StaticResource Text}"/>
+            <TextBox Text="{Binding ContactModel.LastName}" Style="{StaticResource Form}" Margin="0,0,0,10" Padding="4" />
 
-            <TextBlock Text="Email"/>
-            <TextBox Text="{Binding ContactModel.Email}" Margin="0,0,0,10" Padding="4" />
+            <TextBlock Text="Email" Style="{StaticResource Text}"/>
+            <TextBox Text="{Binding ContactModel.Email}" Style="{StaticResource Form}" Margin="0,0,0,10" Padding="4" />
 
-            <TextBlock Text="Phone number"/>
-            <TextBox Text="{Binding ContactModel.PhoneNumber}" Margin="0,0,0,10" Padding="4" />
+            <TextBlock Text="Phone number" Style="{StaticResource Text}"/>
+            <TextBox Text="{Binding ContactModel.PhoneNumber}" Style="{StaticResource Form}" Margin="0,0,0,10" Padding="4" />
 
-            <TextBlock Text="Address"/>
-            <TextBox Text="{Binding ContactModel.Address}" Margin="0,0,0,10" Padding="4" />
+            <TextBlock Text="Address" Style="{StaticResource Text}"/>
+            <TextBox Text="{Binding ContactModel.Address}" Style="{StaticResource Form}" Margin="0,0,0,10" Padding="4" />
 
-            <TextBlock Text="Zip code"/>
-            <TextBox Text="{Binding ContactModel.ZipCode}" Margin="0,0,0,10" Padding="4" />
+            <TextBlock Text="Zip code" Style="{StaticResource Text}"/>
+            <TextBox Text="{Binding ContactModel.ZipCode}" Style="{StaticResource Form}" Margin="0,0,0,10" Padding="4" />
 
-            <TextBlock Text="City"/>
-            <TextBox Text="{Binding ContactModel.City}" Margin="0,0,0,10" Padding="4" />
+            <TextBlock Text="City" Style="{StaticResource Text}"/>
+            <TextBox Text="{Binding ContactModel.City}" Style="{StaticResource Form}" Margin="0,0,0,10" Padding="4" />
             
         </StackPanel>
 
         <StackPanel Grid.Row="2">
-            <Button Content="Save" Padding="5" Margin="0 10 0 5" Command="{Binding SaveCommand }"/>
-            <Button Content="Cancel" Padding="5" Margin="0 5 0 10" Command="{Binding CancelCommand}"/>
+            <Button Content="Save" HorizontalAlignment="Stretch" Margin="0 10 0 5" Command="{Binding SaveCommand }" Style="{StaticResource PrimaryButton}"/>
+            <Button Content="Cancel" HorizontalAlignment="Stretch" Margin="0 5 0 10" Command="{Binding CancelCommand}" Style="{StaticResource PrimaryButton}"/>
         </StackPanel>
 
     </Grid>

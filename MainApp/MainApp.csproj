@@ -9,6 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Page Remove="Resources\Styling\Containers.xaml" />
+    <Page Remove="Resources\Styling\Forms.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.0" />

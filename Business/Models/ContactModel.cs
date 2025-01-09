@@ -10,4 +10,6 @@ public class ContactModel
     public string Address { get; set; } = null!;
     public string ZipCode { get; set; } = null!;
     public string City { get; set; } = null!;
+
+    public string DisplayName => $"{FirstName} {LastName}";
 }
