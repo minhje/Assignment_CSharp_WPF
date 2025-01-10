@@ -1,6 +1,4 @@
-﻿using Business.Models;
-
-namespace Business.Interfaces
+﻿namespace Business.Interfaces
 {
     public interface IFileService
     {

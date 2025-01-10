@@ -9,6 +9,8 @@ namespace Business.Services;
 public class ContactService : IContactService
 {
     private readonly IFileService _fileService;
+    private object _contactService;
+
     public List<ContactModel> Contacts { get; private set; } = [];
 
     public ContactService(IFileService fileService)
@@ -22,16 +24,14 @@ public class ContactService : IContactService
         var contact = ContactFactory.Create(form);
         Contacts.Add(contact);
 
-        //var json = JsonSerializer.Serialize(Contacts);
-        //var result = _fileService.SaveContentToFile(json);
         return SaveContacts();
     }
 
-    // Kod generarad av ChatGPT 4o för att kunna uppdatera en kontakt
+    // Kod generarad av ChatGPT 4o för att kunna uppdatera en kontakt. Tar en befintlig kontakt och uppdaterar den med nya värden.
     public bool UpdateContact(ContactModel updatedContact)
     {
-        var existingContact = Contacts.FirstOrDefault(c => c.Id == updatedContact.Id);
-        if (existingContact != null)
+        var existingContact = Contacts.FirstOrDefault(c => c.Id == updatedContact.Id); // Hittar kontakten som ska uppdateras
+        if (existingContact != null) 
         {
             existingContact.FirstName = updatedContact.FirstName;
             existingContact.LastName = updatedContact.LastName;
@@ -41,19 +41,19 @@ public class ContactService : IContactService
             existingContact.ZipCode = updatedContact.ZipCode;
             existingContact.City = updatedContact.City;
 
-            return SaveContacts();
+            return SaveContacts(); // Sparar listan till filen med den uppdaterade kontakten
         }
         return false;
     }
 
-    // Kod generarad av ChatGPT 4o för att kunna ta bort en kontakt
+    // Kod generarad av ChatGPT 4o för att kunna ta bort en kontakt. Tar en befintlig kontakt och tar bort den från listan.
     public bool DeleteContact(ContactModel contactModel)
     {
-        var existingContact = Contacts.FirstOrDefault(c => c.Id == contactModel.Id);
+        var existingContact = Contacts.FirstOrDefault(c => c.Id == contactModel.Id); // Hittar kontakten som ska tas bort
         if (existingContact != null)
         {
-            Contacts.Remove(existingContact);
-            return SaveContacts();
+            Contacts.Remove(existingContact); // Tar bort kontakten från listan
+            return SaveContacts(); // Sparar listan till filen
         }
         return false;
     }
@@ -73,20 +73,20 @@ public class ContactService : IContactService
     }
 
     // Generarad av ChatGTP 4o för att kontakter ska laddas in direkt vid start. 
-    private void LoadContacts()
+    public void LoadContacts()
     {
-        var content = _fileService.GetContentFromFile();
+        var content = _fileService.GetContentFromFile(); // Hämtar innehållet från filen
         try
         {
-            Contacts = JsonSerializer.Deserialize<List<ContactModel>>(content) ?? new List<ContactModel>();
+            Contacts = JsonSerializer.Deserialize<List<ContactModel>>(content) ?? []; // Laddar in kontakter från filen
         }
         catch
         {
-            Contacts = new List<ContactModel>();
+            Contacts = []; // Om det inte går att ladda in kontakter retuneras en tom lista
         }
     }
 
-    private bool SaveContacts()
+    public bool SaveContacts()
     {
         var json = JsonSerializer.Serialize(Contacts);
         return _fileService.SaveContentToFile(json);

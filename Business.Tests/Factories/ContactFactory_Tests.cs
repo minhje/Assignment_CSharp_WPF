@@ -19,9 +19,11 @@ public class ContactFactory_Tests
     }
 
 
-    // Detta test är från videon Tips & Trix - Skapa en fungerande applikation med tester(https://www.youtube.com/watch?v=mdzDKUO3jKQ&t=1s)
+    /* Detta test är från videon Tips & Trix - Skapa en fungerande applikation med tester(https://www.youtube.com/watch?v=mdzDKUO3jKQ&t=1s) 
+     * Testar att skapa en kontakt med hjälp av en ContactRegistrationForm, skapar en kontakt med hjälp av ContactFactory.
+     * Kontrollerar att kontakten inte är null och har rätt värden.*/
     [Fact]
-    public void Create_ShouldReturnContact_WhenContactRegistrationFormIsProvided()
+    public void Create_ShouldReturnContact_WhenContactRegistrationFormIsProvided() 
     {
         // Arrange
         var contactRegistrationForm = new ContactRegistrationForm()
@@ -35,11 +37,11 @@ public class ContactFactory_Tests
             City = "Testcity"
         };
         // Act
-        var result = ContactFactory.Create(contactRegistrationForm);
+        var result = ContactFactory.Create(contactRegistrationForm); 
 
         // Assert
-        Assert.NotNull(result);
-        Assert.IsType<ContactModel>(result);
+        Assert.NotNull(result); 
+        Assert.IsType<ContactModel>(result); 
         Assert.Equal(contactRegistrationForm.FirstName, result.FirstName);
         Assert.Equal(contactRegistrationForm.LastName, result.LastName);
         Assert.Equal(contactRegistrationForm.Email, result.Email);

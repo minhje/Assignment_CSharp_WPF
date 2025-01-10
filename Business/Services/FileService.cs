@@ -26,11 +26,6 @@ public class FileService : IFileService
     {
         try
         {
-            //if (!Directory.Exists(_directoryPath))
-            //{
-            //    Directory.CreateDirectory(_directoryPath);
-            //}
-
             File.WriteAllText(_filePath, content);
             return true;
         }
@@ -42,5 +37,3 @@ public class FileService : IFileService
         }
     }
 }
-
-
